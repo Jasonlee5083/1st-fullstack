@@ -10,8 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-material-calendar": "^0.2.14",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

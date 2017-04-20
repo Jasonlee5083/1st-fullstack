@@ -4,14 +4,13 @@ var Schema = mongoose.Schema;
 var scheduleSchema = new Schema({
 	event:String,
 	place:String,
-	date:Number,
-	stime:Number,
-	etime:Number,
+	date:String,
+	stime:String,
+	etime:String,
 	description:String,
-	todolists:[String]
 	
 })
 
-var Schedule =mongoose.model('Schedule',scheduleSchema);
+var Schedule = mongoose.model('Schedule', scheduleSchema);
 
 module.exports = Schedule;

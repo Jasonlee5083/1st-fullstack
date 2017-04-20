@@ -7,8 +7,18 @@ app.service("scheduleService",function($http){
 		})
 	}
 	
+	this.getScheduleContent = function(urlString) {
+		return $http.get(urlString)
+	}
+	
 	this.postSchedule = function(newitem) {
+		
+		newitem.date = new Date(newitem.date);
+		newitem.date = newitem.date.toString();
+		
+		
 		return $http.post("/schedule", newitem).then(function(response){
+			response.data.date = new Date(response.data.date);
 			return response.data;
 		})
 	}

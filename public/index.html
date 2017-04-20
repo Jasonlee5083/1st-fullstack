@@ -6,71 +6,53 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.css">
+	
+<!--	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script> -->
+	
+<!--	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+
 	<link rel="stylesheet" href="styles.css">
+	
 	<title>Document</title>
 </head>
 
 <body ng-controller="scheduleController">
-	<div class="container">
+	<div id="main" class="container">
 		<div class="row">
 			<div class="col-sm-7">
-				<div ng-repeat="input in schedule track by $index">
-					<div ng-hide="editing">
-					<h3>{{input.event}}</h3>
-					<h3>{{input.place}}</h3>
-					<h3>{{input.stime}}</h3>
-					<h3>{{input.etime}}</h3>
-					<h3>{{input.description}}</h3>
-					<button class="btn" ng-click="remove($index,item._id)">delete</button>
-					<button class="btn" ng-click="editing=!editing">edit</button>
+			
+				<calendar-md flex layout layout-fill calendar-direction="direction" on-prev-month="prevMonth" on-next-month="nextMonth" on-day-click="dayClick" title-format="'MMMM y'" ng-model='selectedDate' week-starts-on="firstDayOfWeek" data-start-month="3" data-start-year="2017" tooltips="tooltips" day-format="dayFormat" day-label-format="'EEE'" day-label-tooltip-format="'EEEE'" day-tooltip-format="'fullDate'" day-content="setDayContent" disable-future-selection="false">
+				</calendar-md>
+						<div class="container"></div>
+				<div class="row">
+					<div class="lists container">
+					  <div class ="row">
+					  	<div class="col-sm-7">
+					  		<div ng-repeat="input in schedule track by $index" class="col-xs-12 col-sm-6">
+						<div class="tasks">
+							<div  class ="col-sm-8">
+									<p>{{input.event | Event}}</p>
+									<p>{{input.place | Place}}</p>
+									<p>{{input.date | Date |removeCharacters: 23 | date }}</p>
+									<p>{{input.stime | Stime | date:" HH:mm": 'MST'}}</p>
+									<p>{{input.etime | Etime}}</p>
+									<p>{{input.description | Description}}</p>
+									
+							</div>
+							<div class ="col-sm-2">
 
-					</div>
-				<!--input form-->
-
-					<div ng-show="editing">
-						<div class="col-sm-5">
-							<div class="form-group">
-								<label>Event:</label>
-								<input ng-model="input.event" type="text" class="form-control" id="event">
-							</div>
-							<div class="form-group">
-								<label>Place:</label>
-								<input ng-model="input.place" type="text" class="form-control" id="place">
-							</div>
-							<div class="form-group">
-								<label>Date:</label>
-								<input ng-model="input.date" type="text" class="form-control" id="place">
-							</div>
-							<div class="container-fluid">
-								<div class=row>
-									<div class="stime col-sm-5">
-										<div class="form-group">
-											<label>Start Time:</label>
-											<input ng-model="input.stime" type="text" class="form-control" id="date">
-										</div>
-									</div>
-									<div class="etime col-sm-offset-2 col-sm-5">
-										<div class="form-group">
-											<label>End Time:</label>
-											<input ng-model="input.etime" type="text" class="form-control" id="time">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Description:</label>
-								<input ng-model="input.description" type="text" class="form-control" id="Description">
-							</div>
-
-							<div class="sbutton col-sm-12">
-								<button class="btn" ng-click="save(input); editing=!editing">save</button>
-								<button class="btn" ng-click="editing=!editing">edit</button>
+									<button ng-click="remove($index,input._id)" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-sign"></span> delete</button>
 							</div>
 						</div>
-
+						</div>
+						</div>
+						</div>
 					</div>
-
+			
 				</div>
 			</div>
 			<!--input form-->
@@ -85,24 +67,24 @@
 				</div>
 				<div class="form-group">
 					<label>Date:</label>
-					<input ng-model="input.date" type="text" class="form-control" id="place">
+					<input ng-model="input.date" type="date" class="form-control" id="place">
 				</div>
-				<div class=c ontainer-fluid>
+<!--				<div class=c ontainer-fluid>-->
 					<div class=row>
-						<div class="stime col-sm-5">
+						<div class="stime col-sm-6">
 							<div class="form-group">
 								<label>Start Time:</label>
-								<input ng-model="input.stime" type="text" class="form-control" id="date">
+								<input ng-model="input.stime" placeholder="hrs:mins" class="form-control" id="date">
 							</div>
 						</div>
-						<div class="etime col-sm-offset-2 col-sm-5">
+						<div class="etime col-sm-offset-0 col-sm-6">
 							<div class="form-group">
 								<label>End Time:</label>
-								<input ng-model="input.etime" type="text" class="form-control" id="time">
+								<input ng-model="input.etime" placeholder="hrs:mins" class="form-control" id="time">
 							</div>
 						</div>
 					</div>
-				</div>
+<!--				</div>-->
 				<div class="form-group">
 					<label>Description:</label>
 					<input ng-model="input.description" type="text" class="form-control" id="Description">
@@ -115,12 +97,24 @@
 		</div>
 	</div>
 
-
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.5/angular-sanitize.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 	<script src="https://cdn.rawgit.com/bradberger/angular-material-calendar/master/dist/angular-material-calendar.js"></script>
+
+
 
 	<script src="app.js"></script>
 	<script src="service.js"></script>
 </body>
 
 </html>
+
+
+

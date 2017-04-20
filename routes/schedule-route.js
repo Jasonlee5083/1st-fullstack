@@ -5,10 +5,23 @@ var scheduleRoute = express.Router();
 scheduleRoute
 
 	.get("/",function(req,res){
-		Schedule.find(req.params,function(err,scheduleArray){
-		res.send(scheduleArray)
+			Schedule.find(req.query,function(err,scheduleArray){
+			res.send(scheduleArray)
+		})
 	})
-})
+	.get("/content",function(req,res){
+		Schedule.find({date: new Date(req.query.date)},function(err,scheduleArray){
+		
+			var sendString = "";	
+			for (var i = 0; i < scheduleArray.length; i++){
+				sendString += " " + scheduleArray[i].event;
+			}
+
+
+			res.send(sendString)
+		})
+	})
+
 
 	.post("/",function(req,res){
 		newSchedule = new Schedule(req.body);
@@ -20,9 +33,9 @@ scheduleRoute
 
 	.delete("/:id",function(req,res){
 		Schedule.findByIdAndRemove(req.params.id,function(err,scheduleToBeDeleted){
-			scheduleToBeDeleted.remove(function(err){
+//			scheduleToBeDeleted.remove(function(err){
 				res.send("your info has been deleted");
-			})
+//			})
 		})
 })
 
