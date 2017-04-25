@@ -1,59 +1,5 @@
 	var app = angular.module("scheduleApp", ["ngMaterial", "materialCalendar"]);
 
-	app.filter("Event", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'Event: ' + info;
-		}
-	});
-
-	app.filter("Place", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'Place: ' + info;
-		}
-	});
-
-	app.filter("Date", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'Date: ' + info;
-		}
-	});
-
-	app.filter("Stime", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'Start Time: ' + info;
-		}
-	});
-
-	app.filter("Etime", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'End Time: ' + info;
-		}
-	});
-
-	app.filter("Description", function () {
-		return function (info) {
-			if (info === undefined) {
-				return;
-			}
-			return 'Description: ' + info;
-		}
-	});
-
 	app.config(function ($mdIconProvider, $$mdSvgRegistry) {
 		// Add default icons from angular material
 		$mdIconProvider
@@ -62,8 +8,9 @@
 			.icon('md-toggle-arrow', $$mdSvgRegistry.mdToggleArrow);
 	});
 
-	app.controller("scheduleController", function ($window, $scope, scheduleService, $filter, MaterialCalendarData, $http, $q) {
+	app.controller("scheduleController", function ($window, $scope, scheduleService, $filter, MaterialCalendarData, $http) {
 		$scope.schedule = [];
+		
 		scheduleService.getSchedule().then(function (response) {
 			$scope.schedule = response;
 			console.log(response);
@@ -152,6 +99,59 @@
 		//	$scope.setDayContent(day, "<p>hey jason</p>")
 
 	})
+		app.filter("Event", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'Event: ' + info;
+		}
+	});
+
+	app.filter("Place", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'Place: ' + info;
+		}
+	});
+
+	app.filter("Date", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'Date: ' + info;
+		}
+	});
+
+	app.filter("Stime", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'Start Time: ' + info;
+		}
+	});
+
+	app.filter("Etime", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'End Time: ' + info;
+		}
+	});
+
+	app.filter("Description", function () {
+		return function (info) {
+			if (info === undefined) {
+				return;
+			}
+			return 'Description: ' + info;
+		}
+	});
 
 	app.filter('removeCharacters', function(){
 		return function(val, numberOfCharacters){
