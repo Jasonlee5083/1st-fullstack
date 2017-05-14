@@ -1,14 +1,4 @@
-/*
-.stime {
-	padding-left: 0px;
-	padding-right:0px;
-}
 
-.etime {
-	padding-left : 0px;
-	padding-right: 0px;
-}
-*/
 
 #main {
 	padding-top: 50px;
@@ -19,17 +9,8 @@ text-align: center;
 
 }
 
-/*
-.moveNext {
-	color: white;
-}
 
-md-icon {
-	color:white;
-}
-*/
 .one {
-/*	background-color: aqua;*/
 	padding:0px;
 	margin:0px;
 	text-align: left;
@@ -45,9 +26,10 @@ md-icon {
 
 }
 .tasks {
+	padding-top:10px;
 	background-color: ;
-	width:300px;
-	height: 200px;
+	width:270px;
+	height: 220px;
    	border: 1px solid blue;
 	border-radius: 5px;
 	margin-top: 10px;

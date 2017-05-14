@@ -39,13 +39,11 @@
 
 		$scope.dayFormat = "d";
 
-		// To select a single date, make sure the ngModel is not an array.
 		$scope.selectedDate = null;
 
-		// If you want multi-date select, initialize it as an array.
 		$scope.selectedDate = [];
 
-		$scope.firstDayOfWeek = 0; // First day of the week, 0 for Sunday, 1 for Monday, etc.
+		$scope.firstDayOfWeek = 0; 
 		$scope.setDirection = function (direction) {
 			$scope.direction = direction;
 			$scope.dayFormat = direction === "vertical" ? "EEEE, MMMM d" : "d";
@@ -67,8 +65,6 @@
 
 		$scope.setDayContent = function (date, content) {
 			
-			// You would inject any HTML you wanted for
-			// that particular date here.
 
 			date = new Date(date)
 			date = date.toString()
@@ -82,12 +78,6 @@
 				return `<small><p class="one">${response.data}</p></small>`;
 
 
-				//			return scheduleService.getScheduleContent("/schedule/content?place="+place).then(function(response){
-				//				if (!response.data){
-				//					return `<p>`
-				//				}
-				//				return `<p>${response.data}</p>`;
-
 			})
 
 
@@ -95,8 +85,6 @@
 		};
 
 		$scope.day = new Date("2017/04/25");
-
-		//	$scope.setDayContent(day, "<p>hey jason</p>")
 
 	})
 		app.filter("Event", function () {
